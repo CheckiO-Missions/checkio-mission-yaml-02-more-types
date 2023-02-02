@@ -1,0 +1,114 @@
+<!-- Describe task in general -->
+
+<p>Це друга місія щодо парсингу YAML. Вона являє собою наступний крок, де парсинг ускладнюється. Вводяться такі типи даних, як <b class="code">{% if is_js %}null{% else %}None{% endif %}</b> і логічний (булевий), і крім цього, в рядках починають використовуватися лапки.</p>
+
+<p>Ось деякі з прикладів:</p>
+
+<table>
+  <tr>
+    <td>
+<pre>
+name: "Bob Dylan"
+children: 6
+</pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "name": "Bob Dylan", 
+  "children": 6
+}      
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+name: "Alex \\"Fox\\""
+children: 6
+</pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "name": "Alex \"Fox\"",
+  "children": 6
+}           
+      </pre>
+    </td>
+  </tr>
+</table>
+
+<p>Як бачиш, рядок можна поставити в лапки. Це можуть бути як подвійні, так і одиночні лапки.</p>
+
+<table>
+  <tr>
+    <td>
+      <pre>
+name: "Bob Dylan"
+children: 6
+alive: false
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "name": "Bob Dylan", 
+  "alive": {% if is_js %}false{% else %}False{% endif %}, 
+  "children": 6
+}    
+      </pre>
+    </td>
+  </tr>
+</table>
+
+<p><b class="code">{% if is_js %}t{% else %}T{% endif %}rue</b> і <b class="code">{% if is_js %}f{% else %}F{% endif %}alse</b> - це значення логічного (булевого) типу.</p>
+
+<table>
+  <tr>
+    <td>
+      <pre>
+name: "Bob Dylan"
+children: 6
+coding:
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "coding": {% if is_js %}null{% else %}None{% endif %}, 
+  "name": "Bob Dylan", 
+  "children": 6
+}
+      </pre>
+    </td>
+  </tr>
+</table>
+
+<p>Якщо ніяке значення не вказане, воно стає невизначеним. Для цього також є ключове слово - <b class="code">{% if is_js %}null{% else %}None{%endif%}</b>.</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Вхідні дані:</strong> Форматований рядок.
+</p>
+
+<p>
+    <strong>Вихідні дані:</strong> об'єкт ({% if is_js %}масив/словник{% else %}список/словник{%endif%}). 
+</p>
+
+
+<!-- Give some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Приклади:</strong>
+    </p>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Передумова:</strong>
+    <i>YAML 1.2 використовується з <a target="_blank" href="https://yaml.org/spec/1.2/spec.html#id2803231">JSON Schema</a>.</i>
+</p>
