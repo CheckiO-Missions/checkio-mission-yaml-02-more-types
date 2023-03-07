@@ -1,110 +1,108 @@
 <!-- Describe task in general -->
 
-<p>This is the second task on parsing YAML. It represents the next step where parsing gets more complicated. The data types, such as null and bool, are being added, and besides that, you’re getting the ability to use quotes in strings.</p>
+<p>This is the second task on parsing YAML. It represents the next step where parsing gets more complicated. The data types, such as <b class="code">{% if is_js %}null{% else %}None{% endif %}</b> and <b class="code">{% if is_js %}boolean{% else %}bool{% endif %}</b>, are being added, and besides that, you’re getting the ability to use quotes in strings.</p>
 
 <p>Here are some of the examples:</p>
 
+<table>
+  <tr>
+    <td>
 <pre>
 name: "Bob Dylan"
 children: 6
 </pre>
-
-<pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
   "name": "Bob Dylan", 
   "children": 6
-}
-</pre>
-
+}      
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
 <pre>
 name: "Alex \\"Fox\\""
 children: 6
 </pre>
-
-<pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
-  "name": "Alex Fox",
+  "name": "Alex \"Fox\"",
   "children": 6
-}
-</pre>
+}           
+      </pre>
+    </td>
+  </tr>
+</table>
 
 <p>As you can see, the string can be put in quotes. It can be both double and single quotes.</p>
 
-<pre>
+<table>
+  <tr>
+    <td>
+      <pre>
 name: "Bob Dylan"
 children: 6
 alive: false
-</pre>
-
-<pre>
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
   "name": "Bob Dylan", 
-  "alive": {% if interpreter.slug == "js-node" %}false{% else %}False{%endif%}, 
+  "alive": {% if is_js %}false{% else %}False{% endif %}, 
   "children": 6
-}
-</pre>
+}    
+      </pre>
+    </td>
+  </tr>
+</table>
 
-<p>true and false are the keywords defining the boolean type.</p>
+<p><b class="code">{% if is_js %}t{% else %}T{% endif %}rue</b> and <b class="code">{% if is_js %}f{% else %}F{% endif %}alse</b> are the keywords defining the bool{% if is_js %}ean{% endif %} type.</p>
 
-<pre>
+<table>
+  <tr>
+    <td>
+      <pre>
 name: "Bob Dylan"
 children: 6
 coding:
-</pre>
-
-<pre>
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
-  "coding": {% if interpreter.slug == "js-node" %}null{% else %}None{%endif%}, 
+  "coding": {% if is_js %}null{% else %}None{% endif %}, 
   "name": "Bob Dylan", 
   "children": 6
 }
-</pre>
+      </pre>
+    </td>
+  </tr>
+</table>
 
-<p>If no value is specified, it becomes undefined. There also is a keyword for this - null.</p>
+<p>If no value is specified, it becomes undefined. There also is a keyword for this - <b class="code">{% if is_js %}null{% else %}None{%endif%}</b>.</p>
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input: </strong> A format string.
+    <strong>Input:</strong> A format string.
 </p>
 
 <p>
-    <strong>Output: </strong> An object. 
+    <strong>Output:</strong> An object ({% if is_js %}array/dictionary{% else %}list/dictionary{%endif%}). 
 </p>
 
 
 <!-- Give some usage examples -->
 <div class="for_info_only">
     <p>
-        <strong>Example:</strong>
+        <strong>Examples:</strong>
     </p>
-
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">yaml('name: Alex
-age: 12') == {'age': 12, 'name': 'Alex'}
-yaml('name: Alex Fox
-'
- 'age: 12
-'
- '
-'
- 'class: 12b') == {'age': 12,
- 'class': '12b',
- 'name': 'Alex Fox'}
-</pre>
-{% else %}
-<pre class="brush: python">yaml('name: Alex
-age: 12') == {'age': 12, 'name': 'Alex'}
-yaml('name: Alex Fox
-'
- 'age: 12
-'
- '
-'
- 'class: 12b') == {'age': 12,
- 'class': '12b',
- 'name': 'Alex Fox'}
-</pre>
-{% endif %}
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 
@@ -112,5 +110,5 @@ yaml('name: Alex Fox
 <!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>YAML 1.2 is being used with <a href="https://yaml.org/spec/1.2/spec.html#id2803231">JSON Schema</a>.</i>
+    <i>YAML 1.2 is being used with <a target="_blank" href="https://yaml.org/spec/1.2/spec.html#id2803231">JSON Schema</a>.</i>
 </p>

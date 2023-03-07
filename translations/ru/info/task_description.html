@@ -1,110 +1,108 @@
 <!-- Describe task in general -->
 
-<p>Это вторая задача по парсингу YAML. Она представляет собой следующий этап усложнения парсинга, в котором добавляются типы данных, такие как null и bool, а также возможность использовать кавычки в строках.</p>
+<p>Это вторая задача по парсингу YAML. Она представляет собой следующий этап усложнения парсинга, в котором добавляются типы данных, такие как <b class="code">{% if is_js %}null{% else %}None{% endif %}</b> и логический (булевый), а также возможность использовать кавычки в строках.</p>
 
 <p>Вот несколько примеров:</p>
 
+<table>
+  <tr>
+    <td>
 <pre>
 name: "Bob Dylan"
 children: 6
 </pre>
-
-<pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
   "name": "Bob Dylan", 
   "children": 6
-}
-</pre>
-
+}      
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
 <pre>
 name: "Alex \\"Fox\\""
 children: 6
 </pre>
-
-<pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
-  "name": "Alex Fox",
+  "name": "Alex \"Fox\"",
   "children": 6
-}
-</pre>
+}           
+      </pre>
+    </td>
+  </tr>
+</table>
 
 <p>Как видите, строку можно задавать в кавычках. Это могут быть как двойные, так и одинарные кавычки.</p>
 
-<pre>
+<table>
+  <tr>
+    <td>
+      <pre>
 name: "Bob Dylan"
 children: 6
 alive: false
-</pre>
-
-<pre>
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
   "name": "Bob Dylan", 
-  "alive": {% if interpreter.slug == "js-node" %}false{% else %}False{%endif%}, 
+  "alive": {% if is_js %}false{% else %}False{% endif %}, 
   "children": 6
-}
-</pre>
+}    
+      </pre>
+    </td>
+  </tr>
+</table>
 
-<p>true и false - это ключевые слова, определяющие булевный тип.</p>
+<p><b class="code">{% if is_js %}t{% else %}T{% endif %}rue</b> и <b class="code">{% if is_js %}f{% else %}F{% endif %}alse</b> - это ключевые слова, определяющие булевный тип.</p>
 
-<pre>
+<table>
+  <tr>
+    <td>
+      <pre>
 name: "Bob Dylan"
 children: 6
 coding:
-</pre>
-
-<pre>
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
 {
-  "coding": {% if interpreter.slug == "js-node" %}null{% else %}None{%endif%}, 
+  "coding": {% if is_js %}null{% else %}None{% endif %}, 
   "name": "Bob Dylan", 
   "children": 6
 }
-</pre>
+      </pre>
+    </td>
+  </tr>
+</table>
 
-<p>Если значение не указано, то оно становится неопределенным. Также для этого есть ключевое слово null.</p>
+<p>Если значение не указано, то оно становится неопределенным. Также для этого есть ключевое слово <b class="code">{% if is_js %}null{% else %}None{%endif%}</b>.</p>
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Входные данные: </strong> Строка в формате 
+    <strong>Входные данные:</strong> Строка в формате 
 </p>
 
 <p>
-    <strong>Выходные данные: </strong> Объект. 
+    <strong>Выходные данные:</strong> Объект ({% if is_js %}массив/словарь{% else %}список/словарь{%endif%}). 
 </p>
 
 
 <!-- Give some usage examples -->
 <div class="for_info_only">
     <p>
-        <strong>Пример:</strong>
+        <strong>Примеры:</strong>
     </p>
-
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">yaml('name: Alex
-age: 12') == {'age': 12, 'name': 'Alex'}
-yaml('name: Alex Fox
-'
- 'age: 12
-'
- '
-'
- 'class: 12b') == {'age': 12,
- 'class': '12b',
- 'name': 'Alex Fox'}
-</pre>
-{% else %}
-<pre class="brush: python">yaml('name: Alex
-age: 12') == {'age': 12, 'name': 'Alex'}
-yaml('name: Alex Fox
-'
- 'age: 12
-'
- '
-'
- 'class: 12b') == {'age': 12,
- 'class': '12b',
- 'name': 'Alex Fox'}
-</pre>
-{% endif %}
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 
