@@ -24,9 +24,9 @@ age: 12
 
 class: 12b"""],
             "answer": {
-              "age": 12, 
-              "name": "Alex Fox", 
-              "class": "12b"
+                "name": "Alex Fox",
+                "age": 12,
+                "class": "12b"
             }
         },
         {
@@ -35,9 +35,9 @@ age: 12
 
 class: 12b"""],
             "answer": {
-              "age": 12, 
-              "name": "Alex Fox", 
-              "class": "12b"
+                "name": "Alex Fox",
+                "age": 12,
+                "class": "12b"
             }
         },
         {
@@ -46,9 +46,9 @@ age: 12
 
 class: 12b"""],
             "answer": {
-              "age": 12, 
-              "name": "Alex \"Fox\"", 
-              "class": "12b"
+                "name": "Alex \"Fox\"",
+                "age": 12,
+                "class": "12b"
             }
         },
         {
@@ -56,9 +56,9 @@ class: 12b"""],
 children: 6
 alive: false"""],
           "answer": {
-            "name": "Bob Dylan", 
-            "alive": False, 
-            "children": 6
+              "name": "Bob Dylan",
+              "children": 6, 
+            "alive": False
           }
         },
         {
@@ -66,9 +66,9 @@ alive: false"""],
 children: 6
 coding:"""],
           "answer": {
-            "coding": None, 
-            "name": "Bob Dylan", 
-            "children": 6
+              "name": "Bob Dylan", 
+              "children": 6,
+              "coding": None
           }
         },
         {
@@ -76,9 +76,9 @@ coding:"""],
 children: 6
 coding: null"""],
           "answer": {
-            "coding": None, 
-            "name": "Bob Dylan", 
-            "children": 6
+              "name": "Bob Dylan", 
+              "children": 6,
+              "coding": None,
           }
         },
         {
@@ -86,9 +86,9 @@ coding: null"""],
 children: 6
 coding: "null" """],
           "answer": {
-            "coding": "null", 
-            "name": "Bob Dylan", 
-            "children": 6
+              "name": "Bob Dylan", 
+              "children": 6,
+              "coding": "null"
           }
         }
     ],
@@ -110,15 +110,15 @@ age: 12"""],
         },
         {
             "input": ["""name: Bob Dylan
-burn: 24 May 1941
+born: 24 May 1941
 resident: Malibu, California, U.S
 
 children: 6"""],
             "answer": {
-              "resident": "Malibu, California, U.S", 
-              "burn": "24 May 1941", 
-              "name": "Bob Dylan", 
-              "children": 6
+                "name": "Bob Dylan",
+                "born": "24 May 1941", 
+                "resident": "Malibu, California, U.S", 
+                "children": 6
             }
         }
     ]
