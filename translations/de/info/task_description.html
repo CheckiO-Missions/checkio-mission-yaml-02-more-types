@@ -1,0 +1,114 @@
+<!-- Describe task in general -->
+
+<p>Dies ist die zweite Aufgabe zum Parsen von YAML. Sie stellt den nächsten Schritt dar, bei dem das Parsen komplizierter wird. Die Datentypen, wie z.B <b class="code">{% if is_js %}null{% else %}None{% endif %}</b> und <b class="code">{% if is_js %}boolean{% else %}bool{% endif %}</b>werden hinzugefügt, und außerdem erhalten Sie die Möglichkeit, Anführungszeichen in Zeichenketten zu verwenden.</p>
+
+<p>Hier sind einige der Beispiele:</p>
+
+<table>
+  <tr>
+    <td>
+<pre>
+name: "Bob Dylan"
+children: 6
+</pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "name": "Bob Dylan", 
+  "children": 6
+}      
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+name: "Alex \\"Fox\\""
+children: 6
+</pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "name": "Alex \"Fox\"",
+  "children": 6
+}           
+      </pre>
+    </td>
+  </tr>
+</table>
+
+<p>Wie Sie sehen können, kann die Zeichenkette in Anführungszeichen gesetzt werden. Es können sowohl doppelte als auch einfache Anführungszeichen sein.</p>
+
+<table>
+  <tr>
+    <td>
+      <pre>
+name: "Bob Dylan"
+children: 6
+alive: false
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "name": "Bob Dylan", 
+  "alive": {% if is_js %}false{% else %}False{% endif %}, 
+  "children": 6
+}    
+      </pre>
+    </td>
+  </tr>
+</table>
+
+<p><b class="code">{% if is_js %}t{% else %}T{% endif %}rue</b> und <b class="code">{% if is_js %}f{% else %}F{% endif %}alse</b> sind die Schlüsselwörter, die den Typ bool{% if is_js %}ean{% endif %} definieren.</p>
+
+<table>
+  <tr>
+    <td>
+      <pre>
+name: "Bob Dylan"
+children: 6
+coding:
+        </pre>
+    </td>
+    <td>
+      <pre class="brush: python">
+{
+  "coding": {% if is_js %}null{% else %}None{% endif %}, 
+  "name": "Bob Dylan", 
+  "children": 6
+}
+      </pre>
+    </td>
+  </tr>
+</table>
+
+<p>Wenn kein Wert angegeben wird, wird er undefiniert. Auch hierfür gibt es ein Schlüsselwort - <b class="code">{% if is_js %}null{% else %}None{%endif%}</b>.</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Eingabe:</strong> Eine Formatzeichenkette.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> Ein Objekt ({% if is_js %}array/dictionary{% else %}list/dictionary{%endif%}). 
+</p>
+
+
+<!-- Give some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Beispiele:</strong>
+    </p>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Vorbedingung:</strong>
+    <i>YAML 1.2 wird mit <a target="_blank" href="https://yaml.org/spec/1.2/spec.html#id2803231">JSON Schema</a> verwendet.</i>
+</p>
